@@ -1,4 +1,7 @@
-# Almost Accurate Weather
+# [Almost Accurate Weather](https://nostalgic-kare-4cc6ce.netlify.app/)
+
+[See this site live here](https://nostalgic-kare-4cc6ce.netlify.app/)
+
 
 An honest and fun weather application. Built using the [weather.gov API](https://www.weather.gov/documentation/services-web-api) which requires a gridpoint and that gridpoint requires knowing a geolocation so we are using [a free lookup API](https://ipapi.co).
 
