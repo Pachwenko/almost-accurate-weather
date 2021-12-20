@@ -2,6 +2,8 @@
 
 An honest and fun weather application. Built using the [weather.gov API](https://www.weather.gov/documentation/services-web-api) which requires a gridpoint and that gridpoint requires knowing a geolocation so we are using [a free lookup API](https://ipapi.co).
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/github.com/Pachwenko/almost-accurate-weather)
+
 
 ## [Sveltekit documention](https://kit.svelte.dev/docs)
 
