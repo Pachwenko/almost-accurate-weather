@@ -1,4 +1,5 @@
 <script>
+    // import '../styles.css';
 	import sampleForecast from './sampleForecast';
 	// const forecastUrl = 'https://api.weather.gov/gridpoints/DMX/66,48/forecast';
 	// docs for weather.gov API https://www.weather.gov/documentation/services-web-api
@@ -28,20 +29,13 @@
                 // won't work due to some weird CORS thing running locally with http
                 // may work once deployed...
                 'https://ipapi.co/json/',
-                // 'https://example.com',
-                // {
-                //     mode: 'no-cors'
-                // }
             );
-            console.log(geoIPResponse);
             if (geoIPResponse.status === 200) {
                 const data = await geoIPResponse.json();
-                console.log(data);
                 // lat = data.latitude;
                 // lng = data.longitude;
                 lat = 90;
                 lng = -87;
-                console.log(`just set lat and lng. ${lat}:${lng}`);
             }
         } catch (error) {
             // fails for local development so we need to catch it for now untill
@@ -56,7 +50,6 @@
             // 	lng = customGeoIPResponse.longitude;
             // }
         }
-		console.log(`outside context just set lat and lng. ${lat}:${lng}`);
 
 		const pointsResponse = await fetch(pointsUrl()).then((response) => response.json());
 		if (pointsResponse.status === 200) {
@@ -86,6 +79,7 @@
 	<title>Your fun and honest Weather forecast</title>
 </svelte:head>
 
+<body class="prose">
 {#if todaysForecast.now}
 	{#each Object.entries(todaysForecast.now) as [key, value]}
 		<h2>{key} : {value}</h2>
@@ -94,4 +88,4 @@
 	<h2>You are at {city}, {region}</h2>
 {/if}
 <button on:click={getForecast}>Get forecast for {city}, {region}</button>
-<br />
+</body>
