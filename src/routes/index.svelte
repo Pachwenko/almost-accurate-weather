@@ -1,10 +1,9 @@
 <script>
     // import '../styles.css';
-	import sampleForecast from './sampleForecast';
 	// const forecastUrl = 'https://api.weather.gov/gridpoints/DMX/66,48/forecast';
 	// docs for weather.gov API https://www.weather.gov/documentation/services-web-api
 	let city = 'West Des Moines';
-	let region = 'Iowa';
+	let state = 'IA';
 	let office = 'DMX';
 	let gridX = 66;
 	let gridY = 48;
@@ -32,10 +31,8 @@
             );
             if (geoIPResponse.status === 200) {
                 const data = await geoIPResponse.json();
-                // lat = data.latitude;
-                // lng = data.longitude;
-                lat = 90;
-                lng = -87;
+                lat = data.latitude;
+                lng = data.longitude;
             }
         } catch (error) {
             // fails for local development so we need to catch it for now untill
@@ -51,19 +48,21 @@
             // }
         }
 
-		const pointsResponse = await fetch(pointsUrl()).then((response) => response.json());
-		if (pointsResponse.status === 200) {
-			office = gridResponse.properties.gridId;
-			gridX = gridResponse.properties.gridX;
-			gridY = gridResponse.properties.gridY;
-		}
+		// const pointsResponse = await fetch(pointsUrl()).then((response) => response.json());
+        const pointsResponse = await fetch('/samplepointsWDM.json').then((response) => response.json());
+        // console.log(pointsResponse);
+        office = pointsResponse.properties.gridId;
+        gridX = pointsResponse.properties.gridX;
+        gridY = pointsResponse.properties.gridY;
+        city = pointsResponse.properties.relativeLocation.properties.city;
+        state = pointsResponse.properties.relativeLocation.properties.state;
 	}
 
 	async function getForecast() {
 		const TONIGHT = 'Tonight';
 		await getGridInfo(); // need to set up office and grid data first
-		const response = await fetch(forecastUrl()).then((response) => response.json());
-		// const response = sampleForecast();
+		// const response = await fetch(forecastUrl()).then((response) => response.json());
+		const response = await fetch('/sampleForecastNighttime.json').then((response) => response.json());
         todaysForecast.now = response.properties.periods[0];
 		// console.log(response);
 		if (todaysForecast.now.name === TONIGHT) {
@@ -80,12 +79,12 @@
 </svelte:head>
 
 <body class="prose">
+<h1>Welcome to a special weather App. It tells you the weather but is fun and honest about it</h1>
+<button on:click={getForecast}>Get forecast</button>
 {#if todaysForecast.now}
+    <h2>Today's forecast for {city}, {state}</h2>
 	{#each Object.entries(todaysForecast.now) as [key, value]}
 		<h2>{key} : {value}</h2>
 	{/each}
-{:else}
-	<h2>You are at {city}, {region}</h2>
 {/if}
-<button on:click={getForecast}>Get forecast for {city}, {region}</button>
 </body>
