@@ -48,8 +48,8 @@
             // }
         }
 
-		// const pointsResponse = await fetch(pointsUrl()).then((response) => response.json());
-        const pointsResponse = await fetch('/samplepointsWDM.json').then((response) => response.json());
+		const pointsResponse = await fetch(pointsUrl()).then((response) => response.json());
+        // const pointsResponse = await fetch('/samplepointsWDM.json').then((response) => response.json());
         // console.log(pointsResponse);
         office = pointsResponse.properties.gridId;
         gridX = pointsResponse.properties.gridX;
@@ -61,8 +61,8 @@
 	async function getForecast() {
 		const TONIGHT = 'Tonight';
 		await getGridInfo(); // need to set up office and grid data first
-		// const response = await fetch(forecastUrl()).then((response) => response.json());
-		const response = await fetch('/sampleForecastNighttime.json').then((response) => response.json());
+		const response = await fetch(forecastUrl()).then((response) => response.json());
+		// const response = await fetch('/sampleForecastNighttime.json').then((response) => response.json());
         todaysForecast.now = response.properties.periods[0];
 		// console.log(response);
 		if (todaysForecast.now.name === TONIGHT) {
