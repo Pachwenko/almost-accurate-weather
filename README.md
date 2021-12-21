@@ -3,7 +3,7 @@
 [See this site live here](https://nostalgic-kare-4cc6ce.netlify.app/)
 
 
-An honest and fun weather application. Built using the [weather.gov API](https://www.weather.gov/documentation/services-web-api) which requires a gridpoint and that gridpoint requires knowing a geolocation so we are using [a free lookup API](https://ipapi.co).
+An honest and fun weather application. Built using the [weather.gov API](https://www.weather.gov/documentation/services-web-api) which requires a gridpoint and retreiving that gridpoint requires knowing a geolocation so we are using [a free lookup API](https://ipapi.co) to convert an IP to a geolocation. Unfortunately ipapi.co is blocked by Ublock origin so we need to figure out something else eventually...
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/github.com/Pachwenko/almost-accurate-weather)
 
