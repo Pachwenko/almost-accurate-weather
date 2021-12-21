@@ -23,49 +23,54 @@
 	}
 
 	async function getGridInfo() {
-		const geoIPResponse = await fetch(
-			// won't work due to some weird CORS thing running locally with http
-			// may work once deployed...
-			'https://ipapi.co/json/',
-            // 'https://example.com',
-            {
-                mode: 'no-cors'
+        try {
+            const geoIPResponse = await fetch(
+                // won't work due to some weird CORS thing running locally with http
+                // may work once deployed...
+                'https://ipapi.co/json/',
+                // 'https://example.com',
+                // {
+                //     mode: 'no-cors'
+                // }
+            );
+            console.log(geoIPResponse);
+            if (geoIPResponse.status === 200) {
+                const data = await geoIPResponse.json();
+                console.log(data);
+                // lat = data.latitude;
+                // lng = data.longitude;
+                lat = 90;
+                lng = -87;
+                console.log(`just set lat and lng. ${lat}:${lng}`);
             }
-		);
-        console.log(geoIPResponse);
-		if (geoIPResponse.status === 200) {
-			const data = await geoIPResponse.json();
-            console.log(data);
-			// lat = data.latitude;
-			// lng = data.longitude;
-            lat = 90;
-            lng = -87;
-			console.log(`just set lat and lng. ${lat}:${lng}`);
-		}
-		console.log(`outside context just set lat and lng. ${lat}:${lng}`);
-		// keep this incase we need to use a custom API for geoip stuff
-		// if (!lat || !lng) {
-		// 	const customGeoIPResponse = await fetch('/geolocate.json').then((response) =>
-		// 		response.json()
-		// 	);
-		// 	lat = customGeoIPResponse.latitude;
-		// 	lng = customGeoIPResponse.longitude;
-		// }
+        } catch (error) {
+            // fails for local development so we need to catch it for now untill
+            // we can figure out a better solution
 
-        // uncomment this if not using sample data
-		// const pointsResponse = await fetch(pointsUrl()).then((response) => response.json());
-		// if (pointsResponse.status === 200) {
-		// 	office = gridResponse.properties.gridId;
-		// 	gridX = gridResponse.properties.gridX;
-		// 	gridY = gridResponse.properties.gridY;
-		// }
+            // keep this incase we need to use a custom API for geoip stuff
+            // if (!lat || !lng) {
+            // 	const customGeoIPResponse = await fetch('/geolocate.json').then((response) =>
+            // 		response.json()
+            // 	);
+            // 	lat = customGeoIPResponse.latitude;
+            // 	lng = customGeoIPResponse.longitude;
+            // }
+        }
+		console.log(`outside context just set lat and lng. ${lat}:${lng}`);
+
+		const pointsResponse = await fetch(pointsUrl()).then((response) => response.json());
+		if (pointsResponse.status === 200) {
+			office = gridResponse.properties.gridId;
+			gridX = gridResponse.properties.gridX;
+			gridY = gridResponse.properties.gridY;
+		}
 	}
 
 	async function getForecast() {
-		await getGridInfo();
 		const TONIGHT = 'Tonight';
-		// const response = await fetch(forecastUrl()).then((response) => response.json());
-		const response = sampleForecast();
+		await getGridInfo(); // need to set up office and grid data first
+		const response = await fetch(forecastUrl()).then((response) => response.json());
+		// const response = sampleForecast();
         todaysForecast.now = response.properties.periods[0];
 		// console.log(response);
 		if (todaysForecast.now.name === TONIGHT) {
