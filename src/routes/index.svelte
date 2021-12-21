@@ -4,9 +4,9 @@
 	// docs for weather.gov API https://www.weather.gov/documentation/services-web-api
 	let city = 'West Des Moines';
 	let region = 'Iowa';
-    let office = 'DMX';
-    let gridX = 66;
-    let gridY = 48;
+	let office = 'DMX';
+	let gridX = 66;
+	let gridY = 48;
 	let lat = 41.5769;
 	let lng = -93.8021;
 	let todaysForecast = {
@@ -39,8 +39,10 @@
 			const data = await geoIPResponse.json();
 			lat = data.latitude;
 			lng = data.longitude;
+			console.log(`just set lat and lng. ${lat}:${lng}`);
 		}
-        // keep this incase we need to use a custom API for geoip stuff
+		console.log(`outside context just set lat and lng. ${lat}:${lng}`);
+		// keep this incase we need to use a custom API for geoip stuff
 		// if (!lat || !lng) {
 		// 	const customGeoIPResponse = await fetch('/geolocate.json').then((response) =>
 		// 		response.json()
@@ -49,22 +51,23 @@
 		// 	lng = customGeoIPResponse.longitude;
 		// }
 		const pointsResponse = await fetch(pointsUrl()).then((response) => response.json());
-        if (pointsResponse.status === 200) {
-            office = gridResponse.properties.gridId;
-            gridX = gridResponse.properties.gridX;
-            gridY = gridResponse.properties.gridY;
-        }
+		if (pointsResponse.status === 200) {
+			office = gridResponse.properties.gridId;
+			gridX = gridResponse.properties.gridX;
+			gridY = gridResponse.properties.gridY;
+		}
 	}
 
 	async function getForecast() {
 		await getGridInfo();
 		const TONIGHT = 'Tonight';
-		const response = await fetch(forecastUrl()).then(response  => response.json());
+		const response = await fetch(forecastUrl()).then((response) => response.json());
 		// const response = sampleForecast();
-		console.log(response);
-		todaysForecast.now = response.properties.periods[0];
-		if (!(todaysForecast.now.name === TONIGHT)) {
-			// untested
+		// console.log(response);
+		if (todaysForecast.now.name === TONIGHT) {
+			todaysForecast.now = response.properties.periods[0];
+		} else {
+			todaysForecast.now = response.properties.periods[0];
 			todaysForecast.tonight = response.properties.periods[1];
 		}
 	}
