@@ -4,11 +4,11 @@
 	let DEBUGGING = true;
 	// const forecastUrl = 'https://api.weather.gov/gridpoints/DMX/66,48/forecast';
 	// docs for weather.gov API https://www.weather.gov/documentation/services-web-api
-	let city = 'West Des Moines';
-	let state = 'IA';
-	let office = 'DMX';
-	let gridX = 66;
-	let gridY = 48;
+	let city;
+	let state;
+	let office;
+	let gridX;
+	let gridY;
 	let lat = 41.5769;
 	let lng = -93.8021;
 	let todaysForecast = {
@@ -90,6 +90,9 @@
 
 <div class="mx-auto bg-gray-900 text-gray-100 flex flex-col mx-auto text-center">
 	<h1>Welcome to a special weather App. It tells you the weather but is fun and honest about it</h1>
+	<div class="text-gray-900 p-4">
+		<input value={lat} type="text">:<input value={lng} type="text">
+	</div>
 	<button on:click={getForecast} class="purplebutton w-1/3 mx-auto">Get forecast</button>
 	{#if city && state}
 		<h2>{city}, {state}</h2>
