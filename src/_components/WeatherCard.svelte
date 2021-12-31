@@ -9,15 +9,15 @@
         on:click={() => expand = !expand}
         class="w-full"
     >
-        <h2>Today's forecast</h2>
+        <h2>{data.name}'s Forecast</h2>
+        <hr />
+        {#if expand }
+            <br />
+            <div class="grid grid-cols-2 gap-2 justify-items-center">
+                <h3>It may or may not be {data.temperature}&deg;{data.temperatureUnit}</h3>
+                <img src={data.icon} alt="forecast icon">
+                <h3 class="col-span-2">{data.detailedForecast}</h3>
+            </div>
+        {/if}
     </button>
-    <hr />
-    {#if expand }
-        <br />
-        <div class="grid grid-cols-3 gap-2 justify-items-center">
-            <h3>{data.temperature}&deg;{data.temperatureUnit}</h3>
-            <h3>{data.detailedForecast}</h3>
-            <img src={data.icon} alt="forecast icon">
-        </div>
-    {/if}
 </article>
