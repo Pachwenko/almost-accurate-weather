@@ -5,8 +5,8 @@
 	import '../styles.css';
 	import WeatherCard from '../_components/WeatherCard.svelte';
 
-	const DEBUGGING = false;
-	// const DEBUGGING = true;
+	// const DEBUGGING = false;
+	const DEBUGGING = true;
 	const defaultLocationData = {
 		city: 'Salt Lake City',
 		state: 'UT',
@@ -26,17 +26,25 @@
 	function initializePage() {
 		// asks for permission to get user's location
 		// then populates the page with the forecast
-		navigator.geolocation.getCurrentPosition(
-			(success) => {
-				(locationData.lat = success.coords.latitude), (locationData.lng = success.coords.longitude);
-				setLocationGridInfo(locationData.lat, locationData.lng);
-				retrieveForecast();
-			},
-			(error) => {
-				locationData = defaultLocationData;
-				retrieveForecast();
-			}
-		);
+		if (DEBUGGING) {
+			locationData = defaultLocationData;
+			retrieveForecast();
+		} else {
+			navigator.geolocation.getCurrentPosition(
+				(success) => {
+					(locationData.lat = success.coords.latitude), (locationData.lng = success.coords.longitude);
+					setLocationGridInfo(locationData.lat, locationData.lng);
+					retrieveForecast();
+				},
+				(error) => {
+					locationData = defaultLocationData;
+					retrieveForecast();
+				},
+				{
+					enableHighAccuracy: true
+				}
+			);
+		}
 	}
 
 	function pointsUrl(latitude, longitude) {
@@ -70,7 +78,7 @@
 		}
 		let forecastResponse;
 		if (DEBUGGING) {
-			forecastResponse = await fetch('/sampleForecastSLCAfternoon.json').then((response) =>
+			forecastResponse = await fetch('/sampleForecastSLCMorning.json').then((response) =>
 				response.json()
 			);
 		} else {
@@ -100,9 +108,9 @@
 			{/if}
 		</div>
 	{/each}
-	<div class="object-bottom">
+	<div>
 		<p>
-			Data provided by the US NWS. <a href="https://github.com/Pachwenko/almost-accurate-weather"
+			Data provided by the US NWS. <a href="https://github.com/Pachwenko/almost-accurate-weather" class="normal-link"
 				>View source code</a
 			>
 		</p>
