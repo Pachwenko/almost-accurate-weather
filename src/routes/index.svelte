@@ -12,8 +12,8 @@
 		return json;
 	}
 
-	// const DEBUGGING = false;
-	const DEBUGGING = true;
+	const DEBUGGING = false;
+	// const DEBUGGING = true;
 	const defaultLocationData = {
 		city: 'Salt Lake City',
 		state: 'UT',
