@@ -12,8 +12,8 @@
 		return json;
 	}
 
-	const DEBUGGING = false;
-	// const DEBUGGING = true;
+	// const DEBUGGING = false;
+	const DEBUGGING = true;
 	const defaultLocationData = {
 		city: 'Salt Lake City',
 		state: 'UT',
@@ -87,7 +87,10 @@
 		}
 		let forecastResponse;
 		if (DEBUGGING) {
-			forecastResponse = await fetch('/sampleForecastSLCMorning.json').then((response) =>
+			// forecastResponse = await fetch('/sampleForecastSLCMorning.json').then((response) =>
+			// 	response.json()
+			// );
+			forecastResponse = await fetch('/sampleForecastNighttime.json').then((response) =>
 				response.json()
 			);
 		} else {
