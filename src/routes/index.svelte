@@ -5,8 +5,15 @@
 	import '../styles.css';
 	import WeatherCard from '../_components/WeatherCard.svelte';
 
-	// const DEBUGGING = false;
-	const DEBUGGING = true;
+	async function testReturnsData() {
+		const response = await fetch('/samplepointsSLC.json');
+		const json = await response.json();
+		console.log(json);
+		return json;
+	}
+
+	const DEBUGGING = false;
+	// const DEBUGGING = true;
 	const defaultLocationData = {
 		city: 'Salt Lake City',
 		state: 'UT',
@@ -21,6 +28,7 @@
 
 	onMount(async () => {
 		await initializePage();
+		console.log(testReturnsData());
 	});
 
 	function initializePage() {
@@ -32,7 +40,8 @@
 		} else {
 			navigator.geolocation.getCurrentPosition(
 				(success) => {
-					(locationData.lat = success.coords.latitude), (locationData.lng = success.coords.longitude);
+					(locationData.lat = success.coords.latitude),
+						(locationData.lng = success.coords.longitude);
 					setLocationGridInfo(locationData.lat, locationData.lng);
 					retrieveForecast();
 				},
@@ -86,7 +95,46 @@
 				forecastUrl(locationData.office, locationData.gridX, locationData.gridY)
 			).then((response) => response.json());
 		}
-		forecast = forecastResponse.properties.periods;
+		forecast = groupForecastByDays(forecastResponse.properties.periods);
+	}
+
+	function groupForecastByDays(forecast) {
+		// returns data in format of
+		// {
+		//   [
+		//      {morning: {}, night: {}},
+		//      {morning: {}, night: {}},
+		// 	 ]
+		// }
+		// night may be null in the cast that the forecast is at nighttime
+		// this code is specific to the NWS forecast API
+		return forecast.reduce((accumulator, _, index) => {
+			if (index < forecast.length - 1) {
+				let firstDay = new Date(forecast[index].startTime).getDay();
+				let secondDay = new Date(forecast[index + 1].startTime).getDay();
+				if (firstDay === secondDay) {
+					let newForecast = {
+						morning: forecast[index],
+						night: forecast[index + 1]
+					};
+					newForecast.morning.dayOfWeek = getWeekDayName(firstDay);
+					newForecast.night.dayOfWeek = getWeekDayName(secondDay);
+					accumulator.push(newForecast);
+				} else if (index === 0) {
+					let newForecast = {
+						morning: forecast[index],
+						night: null
+					};
+					newForecast.morning.dayOfWeek = getWeekDayName(firstDay);
+					accumulator.push(newForecast);
+				}
+			}
+			return accumulator;
+		}, []);
+	}
+
+	function getWeekDayName(day) {
+		return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][day];
 	}
 </script>
 
@@ -110,8 +158,9 @@
 	{/each}
 	<div>
 		<p>
-			Data provided by the US NWS. <a href="https://github.com/Pachwenko/almost-accurate-weather" class="normal-link"
-				>View source code</a
+			Data provided by the US NWS. <a
+				href="https://github.com/Pachwenko/almost-accurate-weather"
+				class="normal-link">View source code</a
 			>
 		</p>
 	</div>
