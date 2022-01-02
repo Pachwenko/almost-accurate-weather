@@ -18,6 +18,7 @@
 	};
 	let locationData = {};
 	let forecast = [];
+	let address = '';
 
 	onMount(async () => {
 		await initializePage();
@@ -131,6 +132,23 @@
 	function getWeekDayName(day) {
 		return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][day];
 	}
+
+	async function getForecastForAddress() {
+		if (address.length > 0) {
+			let response;
+			if (DEBUGGING) {
+				response = await fetch('/geocodeSaltLakeCity.json').then(response => response.json());
+			} else {
+				let url = `https://nominatim.openstreetmap.org/search?q=${address}&format=geocodejson`;
+				response = await fetch(encodeURI(url)).then(response => response.json());
+			}
+			locationData.lng = response.features[0].geometry.coordinates[0];
+			locationData.lat = response.features[0].geometry.coordinates[1];
+			setLocationGridInfo(locationData.lat, locationData.lng);
+			retrieveForecast();
+		}
+
+	}
 </script>
 
 <svelte:head>
@@ -142,6 +160,15 @@
 	{#if locationData.city && locationData.state}
 		<h2>{locationData.city}, {locationData.state}</h2>
 	{/if}
+	<div class="container" id="address-input">
+		<input type="text" bind:value={address} placeholder="Enter a location" class="text-gray-900" />
+		<button
+			on:click={getForecastForAddress}
+			class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+		>
+			Get Forecast
+		</button>
+	</div>
 	{#each forecast as f, i}
 		<div class="py-2">
 			{#if i === 0}
