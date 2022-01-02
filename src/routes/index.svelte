@@ -5,13 +5,6 @@
 	import '../styles.css';
 	import WeatherCard from '../_components/WeatherCard.svelte';
 
-	async function testReturnsData() {
-		const response = await fetch('/samplepointsSLC.json');
-		const json = await response.json();
-		console.log(json);
-		return json;
-	}
-
 	const DEBUGGING = false;
 	// const DEBUGGING = true;
 	const defaultLocationData = {
@@ -28,7 +21,6 @@
 
 	onMount(async () => {
 		await initializePage();
-		console.log(testReturnsData());
 	});
 
 	function initializePage() {
