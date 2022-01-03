@@ -165,6 +165,7 @@
 </script>
 
 <svelte:head>
+	<meta name="description" content="A weather app that is honest about it's predictions">
 	<title>Your honest Weather forecast</title>
 </svelte:head>
 
