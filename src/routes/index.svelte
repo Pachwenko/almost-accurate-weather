@@ -170,7 +170,7 @@
 
 <div class="mx-auto bg-stone-900 text-stone-100 flex flex-col mx-auto text-center min-h-screen">
 	<h1>Welcome to a special weather App. It tells you the weather, but is honest about it</h1>
-	<div class="container m-4" id="address-input">
+	<div class="container mx-auto my-4" id="address-input">
 		<input type="text" bind:value={address} placeholder="Enter a location" class="text-gray-900" />
 		<button
 			on:click={getForecastForAddress}
