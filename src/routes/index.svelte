@@ -171,10 +171,10 @@
 <div class="mx-auto bg-stone-900 text-stone-100 flex flex-col mx-auto text-center min-h-screen">
 	<h1>Welcome to a special weather App. It tells you the weather, but is honest about it</h1>
 	<div class="container mx-auto my-4" id="address-input">
-		<input type="text" bind:value={address} placeholder="Enter a location" class="text-gray-900" />
+		<label for="address"><h2>Address</h2></label><input id="address" type="text" bind:value={address} placeholder="Enter a location" class="text-stone-900" />
 		<button
 			on:click={getForecastForAddress}
-			class="bg-white hover:bg-stone-100 text-stone-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+			class="bg-stone-100 hover:bg-stone-400 text-stone-900 font-semibold py-2 px-4 border border-stone-400 rounded shadow"
 		>
 			Get Forecast
 		</button>
