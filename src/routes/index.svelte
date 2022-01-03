@@ -165,34 +165,32 @@
 </script>
 
 <svelte:head>
-	<title>Your fun and honest Weather forecast</title>
+	<title>Your honest Weather forecast</title>
 </svelte:head>
 
-<div class="mx-auto bg-gray-900 text-gray-100 flex flex-col mx-auto text-center min-h-screen">
+<div class="mx-auto bg-stone-900 text-stone-100 flex flex-col mx-auto text-center min-h-screen">
 	<h1>Welcome to a special weather App. It tells you the weather, but is honest about it</h1>
-	<div class="container" id="address-input">
+	<div class="container m-4" id="address-input">
 		<input type="text" bind:value={address} placeholder="Enter a location" class="text-gray-900" />
 		<button
 			on:click={getForecastForAddress}
-			class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+			class="bg-white hover:bg-stone-100 text-stone-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
 		>
 			Get Forecast
 		</button>
 	</div>
 	{#if locationData.city && locationData.state}
-		<h2 class="text-3xl text-blue-300">{locationData.city}, {locationData.state}</h2>
+		<h2 class="text-3xl text-sky-100 m-2">{locationData.city}, {locationData.state}</h2>
 	{/if}
 	{#if displayForecast}
 		{#each forecast as f, i}
-			<main in:fade={{ duration: 500 }} out:fade>
-				<div class="py-2">
-					{#if i === 0}
-						<WeatherCard data={f} expand={true} />
-					{:else}
-						<WeatherCard data={f} expand={true} />
-					{/if}
-				</div>
-			</main>
+			<div class="py-2" in:fade={{ duration: 500 }} out:fade>
+				{#if i === 0}
+					<WeatherCard data={f} expand={true} />
+				{:else}
+					<WeatherCard data={f} expand={true} />
+				{/if}
+			</div>
 		{/each}
 	{/if}
 	<div>

@@ -3,11 +3,7 @@
 @tailwind utilities;
 
 .weatherCard {
-    @apply container mx-auto p-4 rounded bg-teal-900 w-1/2
-}
-
-.purplebutton {
-    @apply bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 shadow-lg
+    @apply container mx-auto p-4 rounded bg-stone-700 w-3/4
 }
 
 h1 {
@@ -23,5 +19,5 @@ h3 {
 }
 
 .normal-link {
-    @apply underline mx-1 text-blue-600 hover:text-blue-800 visited:text-purple-600
+    @apply underline mx-1 text-sky-400 hover:text-sky-800 visited:text-indigo-600
 }
