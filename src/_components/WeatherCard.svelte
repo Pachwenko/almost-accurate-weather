@@ -29,7 +29,7 @@
 				{/if}
 				{#if data.night}
 					<div>
-						<div class="grid grid-cols-3 gap-2 justify-items-center md:border-l">
+						<div class="grid grid-cols-3 pl-2 gap-2 justify-items-center md:border-l">
 							<h3 class="col-span-3">{data.night.dayOfWeek} night</h3>
 							<p>
 								<em class="italic">It may or may not be</em> <em class="font-bold">{data.night.temperature}&deg;{data.night.temperatureUnit}</em> 
