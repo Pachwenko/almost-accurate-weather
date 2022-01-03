@@ -2,6 +2,7 @@
 	// docs for weather.gov API https://www.weather.gov/documentation/services-web-api
 
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import '../styles.css';
 	import WeatherCard from '../_components/WeatherCard.svelte';
 
@@ -19,6 +20,7 @@
 	let locationData = {};
 	let forecast = [];
 	let address = '';
+	let displayForecast = false;
 
 	onMount(async () => {
 		await initializePage();
@@ -75,6 +77,7 @@
 
 	async function retrieveForecast() {
 		const TONIGHT = 'Tonight';
+		const startTime = new Date();
 		if (!locationData.office || !locationData.gridX || !locationData.gridY) {
 			await setLocationGridInfo(locationData.lat, locationData.lng);
 		}
@@ -92,6 +95,16 @@
 			).then((response) => response.json());
 		}
 		forecast = groupForecastByDays(forecastResponse.properties.periods);
+		const endTime = new Date();
+		const waitToDisplayMilliseconds = 1000;
+		const elapsed = endTime.getTime() - startTime.getTime();
+		if (elapsed < waitToDisplayMilliseconds) {
+			setTimeout(() => {
+				displayForecast = true;
+			}, 1000 - elapsed);
+		} else {
+			displayForecast = true;
+		}
 	}
 
 	function groupForecastByDays(forecast) {
@@ -102,7 +115,7 @@
 		//      {morning: {}, night: {}},
 		// 	 ]
 		// }
-		// night may be null in the cast that the forecast is at nighttime
+		// night may be null in the case that the forecast is at nighttime
 		// this code is specific to the NWS forecast API
 		return forecast.reduce((accumulator, _, index) => {
 			if (index < forecast.length - 1) {
@@ -135,49 +148,51 @@
 
 	async function getForecastForAddress() {
 		if (address.length > 0) {
+			displayForecast = false;
 			let response;
 			if (DEBUGGING) {
-				response = await fetch('/geocodeSaltLakeCity.json').then(response => response.json());
+				response = await fetch('/geocodeSaltLakeCity.json').then((response) => response.json());
 			} else {
 				let url = `https://nominatim.openstreetmap.org/search?q=${address}&format=geocodejson`;
-				response = await fetch(encodeURI(url)).then(response => response.json());
+				response = await fetch(encodeURI(url)).then((response) => response.json());
 			}
 			locationData.lng = response.features[0].geometry.coordinates[0];
 			locationData.lat = response.features[0].geometry.coordinates[1];
 			setLocationGridInfo(locationData.lat, locationData.lng);
 			retrieveForecast();
 		}
-
 	}
 </script>
 
 <svelte:head>
-	<title>Your fun and honest Weather forecast</title>
+	<title>Your honest Weather forecast</title>
 </svelte:head>
 
-<div class="mx-auto bg-gray-900 text-gray-100 flex flex-col mx-auto text-center min-h-screen">
+<div class="mx-auto bg-stone-900 text-stone-100 flex flex-col mx-auto text-center min-h-screen">
 	<h1>Welcome to a special weather App. It tells you the weather, but is honest about it</h1>
-	{#if locationData.city && locationData.state}
-		<h2>{locationData.city}, {locationData.state}</h2>
-	{/if}
-	<div class="container" id="address-input">
-		<input type="text" bind:value={address} placeholder="Enter a location" class="text-gray-900" />
+	<div class="container mx-auto my-4" id="address-input">
+		<label for="address"><h2>Address</h2></label><input id="address" type="text" bind:value={address} placeholder="Enter a location" class="text-stone-900" />
 		<button
 			on:click={getForecastForAddress}
-			class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+			class="bg-stone-100 hover:bg-stone-400 text-stone-900 font-semibold py-2 px-4 border border-stone-400 rounded shadow"
 		>
 			Get Forecast
 		</button>
 	</div>
-	{#each forecast as f, i}
-		<div class="py-2">
-			{#if i === 0}
-				<WeatherCard data={f} expand={true} />
-			{:else}
-				<WeatherCard data={f} expand={false} />
-			{/if}
-		</div>
-	{/each}
+	{#if locationData.city && locationData.state}
+		<h2 class="text-3xl text-sky-100 m-2">{locationData.city}, {locationData.state}</h2>
+	{/if}
+	{#if displayForecast}
+		{#each forecast as f, i}
+			<div class="py-2" in:fade={{ duration: 500 }} out:fade>
+				{#if i === 0}
+					<WeatherCard data={f} expand={true} />
+				{:else}
+					<WeatherCard data={f} expand={true} />
+				{/if}
+			</div>
+		{/each}
+	{/if}
 	<div>
 		<p>
 			Data provided by the US NWS. <a
