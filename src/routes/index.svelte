@@ -158,7 +158,7 @@
 			}
 			locationData.lng = response.features[0].geometry.coordinates[0];
 			locationData.lat = response.features[0].geometry.coordinates[1];
-			setLocationGridInfo(locationData.lat, locationData.lng);
+			await setLocationGridInfo(locationData.lat, locationData.lng);
 			retrieveForecast();
 		}
 	}
