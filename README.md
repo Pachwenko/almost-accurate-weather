@@ -1,30 +1,14 @@
-# [Almost Accurate Weather](https://nostalgic-kare-4cc6ce.netlify.app/)
+# [Almost Accurate Weather](https://weather.patrickmccartney.dev)
 
-[See this site live here](https://nostalgic-kare-4cc6ce.netlify.app/)
+[See this site live here](https://weather.patrickmccartney.dev)
 
 
-An honest and fun weather application. Built using the [weather.gov API](https://www.weather.gov/documentation/services-web-api) which requires a gridpoint and retreiving that gridpoint requires knowing a geolocation so we are using [a free lookup API](https://ipapi.co) to convert an IP to a geolocation. Unfortunately ipapi.co is blocked by Ublock origin so we need to figure out something else eventually...
+An honest and fun weather application. Built using the [weather.gov API](https://www.weather.gov/documentation/services-web-api) which requires a gridpoint and retreiving that gridpoint requires having a geolocation. To get a geolocation your [browser location is requested](https://w3c.github.io/geolocation-api/#dom-navigator-geolocation). To allow viewing weather in other locations we are making use of [the free geocoding API Nominatim](https://nominatim.org/release-docs/develop/api/Search/#examples).
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/github.com/Pachwenko/almost-accurate-weather)
 
 
 ## [Sveltekit documention](https://kit.svelte.dev/docs)
-
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
 
 ## Developing
 
@@ -32,14 +16,11 @@ Once you've created a project and installed dependencies with `npm install` (or 
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
 ## Building
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+This site uses the [sveltekit cloudflare-pages adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-cloudflare) which does do _something_ even though there are no serverless functions defined. The site presently is really just a static set of assets.
 
 ```bash
 npm run build
