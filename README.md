@@ -20,7 +20,7 @@ npm run dev
 
 ## Building
 
-This site uses the [sveltekit cloudflare-pages adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-cloudflare) which does do _something_ even though there are no serverless functions defined. The site presently is really just a static set of assets.
+This site uses the [sveltekit cloudflare-pages adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-cloudflare) which presently just does server side rendering to speed up the first page load (not that we even need that as currently there's no dynamic content on first page load).
 
 ```bash
 npm run build
