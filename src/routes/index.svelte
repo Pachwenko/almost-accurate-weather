@@ -29,26 +29,26 @@
   function initializePage() {
     // asks for permission to get user's location
     // then populates the page with the forecast
-    if (DEBUGGING) {
-      locationData = defaultLocationData;
-      retrieveForecast();
-    } else {
-      navigator.geolocation.getCurrentPosition(
-        (success) => {
-          (locationData.lat = success.coords.latitude),
-            (locationData.lng = success.coords.longitude);
-          setLocationGridInfo(locationData.lat, locationData.lng);
-          retrieveForecast();
-        },
-        (error) => {
-          locationData = defaultLocationData;
-          retrieveForecast();
-        },
-        {
-          enableHighAccuracy: true
-        }
-      );
-    }
+    // if (DEBUGGING) {
+    locationData = defaultLocationData;
+    retrieveForecast();
+    // } else {
+    //   navigator.geolocation.getCurrentPosition(
+    //     (success) => {
+    //       (locationData.lat = success.coords.latitude),
+    //         (locationData.lng = success.coords.longitude);
+    //       setLocationGridInfo(locationData.lat, locationData.lng);
+    //       retrieveForecast();
+    //     },
+    //     (error) => {
+    //       locationData = defaultLocationData;
+    //       retrieveForecast();
+    //     },
+    //     {
+    //       enableHighAccuracy: true
+    //     }
+    //   );
+    // }
   }
 
   function pointsUrl(latitude, longitude) {
