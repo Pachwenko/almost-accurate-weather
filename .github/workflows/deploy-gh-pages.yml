@@ -22,4 +22,4 @@ jobs:
           publish_dir: .build
           publish_branch: build
       - name: Cloudflare deploy
-        run: curl -X POST ${{ CLOUDFLARE_DEPLOY_HOOK_URL }}
+        run: curl -X POST ${{ secrets.CLOUDFLARE_DEPLOY_HOOK_URL }}
