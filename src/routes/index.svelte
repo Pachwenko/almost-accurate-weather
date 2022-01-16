@@ -2,7 +2,6 @@
   // docs for weather.gov API https://www.weather.gov/documentation/services-web-api
 
   import { onMount } from 'svelte';
-import { init } from 'svelte/internal';
   import { fade } from 'svelte/transition';
   import '../styles.css';
   import WeatherCard from '../_components/WeatherCard.svelte';
@@ -22,11 +21,10 @@ import { init } from 'svelte/internal';
   let forecast = [];
   let address = '';
   let displayForecast = false;
-  initializePage();
 
-  // onMount(async () => {
-  //   await initializePage();
-  // });
+  onMount(async () => {
+    await initializePage();
+  });
 
   function initializePage() {
     // asks for permission to get user's location
