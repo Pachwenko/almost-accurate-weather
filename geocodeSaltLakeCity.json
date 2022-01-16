@@ -1,0 +1,211 @@
+{
+  "type": "FeatureCollection",
+  "geocoding": {
+    "version": "0.1.0",
+    "attribution": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+    "licence": "ODbL",
+    "query": "Salt Lake City"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "geocoding": {
+          "place_id": 280599,
+          "osm_type": "node",
+          "osm_id": 150935219,
+          "type": "city",
+          "label": "Salt Lake City, Salt Lake County, Utah, 84139, United States",
+          "name": "Salt Lake City"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8867975,
+          40.7596198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geocoding": {
+          "place_id": 282381535,
+          "osm_type": "relation",
+          "osm_id": 198770,
+          "type": "administrative",
+          "label": "Salt Lake City, Salt Lake County, Utah, United States",
+          "name": "Salt Lake City"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.95789749381623,
+          40.7769712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geocoding": {
+          "place_id": 74403926,
+          "osm_type": "node",
+          "osm_id": 7069051103,
+          "type": "hospital",
+          "label": "Anandalok Hospital, Salt Lake City, 7th Cross Road, DJ Block, Bhangar - II, South 24 Parganas, West Bengal, 700091, India",
+          "name": "Anandalok Hospital, Salt Lake City"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.4231722,
+          22.5847892
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geocoding": {
+          "place_id": 63071847,
+          "osm_type": "node",
+          "osm_id": 5723738644,
+          "type": "picnic_site",
+          "label": "17, City Creek Trail, Salt Lake City, Salt Lake County, Utah, 84103, United States",
+          "name": "17"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8360638,
+          40.8131894
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geocoding": {
+          "place_id": 62882492,
+          "osm_type": "node",
+          "osm_id": 5723672958,
+          "type": "picnic_site",
+          "label": "23, City Creek Canyon Road, North Cove, Salt Lake City, Salt Lake County, Utah, 84143, United States",
+          "name": "23"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8087399,
+          40.8215144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geocoding": {
+          "place_id": 63009531,
+          "osm_type": "node",
+          "osm_id": 5723738647,
+          "type": "picnic_site",
+          "label": "10, City Creek Canyon Road, North Cove, Salt Lake City, Salt Lake County, Utah, 84143, United States",
+          "name": "10"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8630173,
+          40.804914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geocoding": {
+          "place_id": 23881213,
+          "osm_type": "node",
+          "osm_id": 2601139992,
+          "type": "stop",
+          "label": "Salt Lake City, 400 South, The Granary, Salt Lake City, Salt Lake County, Utah, 84101, United States",
+          "name": "Salt Lake City"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9088837,
+          40.7608274
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geocoding": {
+          "place_id": 4280133,
+          "osm_type": "node",
+          "osm_id": 585370637,
+          "type": "mine",
+          "label": "Salt Lake City, 400 South, Salt Lake City, Salt Lake County, Utah, 841010, United States",
+          "name": "Salt Lake City"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.89,
+          40.761
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geocoding": {
+          "place_id": 247534873,
+          "osm_type": "way",
+          "osm_id": 744922448,
+          "type": "camp_site",
+          "label": "Affleck Park Campground, Mormon Pioneer - Burnt Flat Connector Trail, Salt Lake County, Utah, United States",
+          "name": "Affleck Park Campground"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.67966208173736,
+          40.8101651
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geocoding": {
+          "place_id": 21931853,
+          "osm_type": "node",
+          "osm_id": 2460827384,
+          "type": "hospital",
+          "label": "Vasan Eye Care Hospital, Kolkata, 2nd Cross Road, CC Block, Rajarhat, North 24 Parganas, West Bengal, 700064, India",
+          "name": "Vasan Eye Care Hospital, Kolkata"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.4089267,
+          22.5896424
+        ]
+      }
+    }
+  ]
+}
