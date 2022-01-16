@@ -1,5 +1,5 @@
 import preprocess from "svelte-preprocess";
-import adapter from '@sveltejs/adapter-cloudflare';
+import adapter from '@sveltejs/adapter-static';
 
 export default {
 	preprocess: [
@@ -8,7 +8,12 @@ export default {
 		}),
 	],
 	kit: {
-		adapter: adapter(),
-		vite: () => ({})
+		adapter: adapter({
+			// default options
+			pages: 'build',
+			assets: 'build',
+			fallback: null,
+			precompress: false
+		})
 	}
 };
