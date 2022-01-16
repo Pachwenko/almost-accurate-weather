@@ -20,7 +20,7 @@ npm run dev
 
 ## Building
 
-This site uses the [sveltekit cloudflare-pages adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-cloudflare) which presently just does server side rendering to speed up the first page load (not that we even need that as currently there's no dynamic content on first page load).
+This site uses the [sveltekit static adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) which outputs the build site to the build folder. You can make use of workers/serverless functions with sveltekit, but this site doesn't need anything fancy.
 
 ```bash
 npm run build
