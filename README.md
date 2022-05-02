@@ -12,7 +12,7 @@ An honest and fun weather application. Built using the [weather.gov API](https:/
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `pnpm install` (use `corepack enable` if using node 16.3 or newer, else see [pnpm documentation](https://pnpm.io/installation)), start a development server:
 
 ```bash
 npm run dev
