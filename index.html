@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>Your honest Weather forecast</title><meta name="description" content="A weather app that is honest about it's predictions" data-svelte="svelte-1i7y4y">
+	<link rel="stylesheet" href="/_app/assets/pages/index.svelte-d4ae9d4c.css">
+	<link rel="modulepreload" href="/_app/start-4c52f79c.js">
+	<link rel="modulepreload" href="/_app/chunks/index-1b76752e.js">
+	<link rel="modulepreload" href="/_app/layout.svelte-859bf0a6.js">
+	<link rel="modulepreload" href="/_app/pages/index.svelte-984523e9.js">
+				<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/service-worker.js');
+		}
+	</script>
+	</head>
+	<body class="bg-gray-900 text-white">
+		<div id="svelte">
+
+
+
+
+<div class="mx-auto bg-stone-900 text-stone-100 flex flex-col mx-auto text-center min-h-screen"><h1>Welcome to a special weather App. It tells you the weather, but is honest about it</h1>
+  <div class="container mx-auto my-4" id="address-input"><label for="address"><h2>Address</h2></label><input id="address" type="text" placeholder="Enter a location" class="text-stone-900" value="">
+    <button class="bg-stone-100 hover:bg-stone-400 text-stone-900 font-semibold py-2 px-4 border border-stone-400 rounded shadow">Get Forecast
+    </button></div>
+  
+  
+  <div><p>Data provided by the US NWS. <a href="https://github.com/Pachwenko/almost-accurate-weather" class="normal-link">View source code</a></p></div></div>
+
+
+		<script type="module" data-hydrate="1yz0ybd">
+		import { start } from "/_app/start-4c52f79c.js";
+		start({
+			target: document.querySelector('[data-hydrate="1yz0ybd"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [
+					import("/_app/layout.svelte-859bf0a6.js"),
+						import("/_app/pages/index.svelte-984523e9.js")
+				],
+				params: {},
+				routeId: ""
+			}
+		});
+	</script></div>
+	</body>
+</html>
