@@ -15,7 +15,7 @@ An honest and fun weather application. Built using the [weather.gov API](https:/
 Once you've created a project and installed dependencies with `pnpm install` (use `corepack enable` if using node 16.3 or newer, else see [pnpm documentation](https://pnpm.io/installation)), start a development server:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 ## Building
@@ -23,7 +23,7 @@ npm run dev
 This site uses the [sveltekit static adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) which outputs the build site to the build folder. You can make use of workers/serverless functions with sveltekit, but this site doesn't need anything fancy.
 
 ```bash
-npm run build
+pnpm build
 ```
 
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+> You can preview the built app with `pnpm preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
